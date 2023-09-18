@@ -26,8 +26,9 @@ class ChatCompletion(EngineAPIResource):
             except TryAgain as e:
                 if timeout is not None and time.time() > start + timeout:
                     raise
-
                 util.log_info("Waiting for model to warm up", error=e)
+            except:
+                raise
 
     @classmethod
     async def acreate(cls, *args, **kwargs):
@@ -46,5 +47,6 @@ class ChatCompletion(EngineAPIResource):
             except TryAgain as e:
                 if timeout is not None and time.time() > start + timeout:
                     raise
-
                 util.log_info("Waiting for model to warm up", error=e)
+            except:
+                raise

@@ -23,8 +23,9 @@ class Engine(ListableAPIResource, UpdateableAPIResource):
             except TryAgain as e:
                 if timeout is not None and time.time() > start + timeout:
                     raise
-
                 util.log_info("Waiting for model to warm up", error=e)
+            except:
+                raise
 
     async def agenerate(self, timeout=None, **params):
         start = time.time()
@@ -40,8 +41,9 @@ class Engine(ListableAPIResource, UpdateableAPIResource):
             except TryAgain as e:
                 if timeout is not None and time.time() > start + timeout:
                     raise
-
                 util.log_info("Waiting for model to warm up", error=e)
+            except:
+                raise
 
     def embeddings(self, **params):
         warnings.warn(
